@@ -4,7 +4,12 @@ class Array
     copy.insertion_sort!
   end
 
-  # Insertion sort takes the
+  # Insertion sort orders the array to the left of the
+  # current index in order.  It takes the current index
+  # and scans backwards through the ordered section of the
+  # array, looking for the index of the last value larger
+  # than itself.  Then it inserts the value at the current
+  # index before that value.
   def insertion_sort!
     self.length.times do |idx|
       next if idx == 0
