@@ -1,8 +1,4 @@
 class Array
-  def insertion_sort
-    copy = self.dup
-    copy.insertion_sort!
-  end
 
   # Insertion sort orders the array to the left of the
   # current index in order.  It takes the current index
@@ -25,5 +21,10 @@ class Array
     end
 
     return self
+  end
+
+  def insertion_sort
+    copy = self.dup
+    copy.insertion_sort!
   end
 end
