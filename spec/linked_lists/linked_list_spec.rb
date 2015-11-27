@@ -54,13 +54,42 @@ describe LinkedList::List do
   describe "#each" do
     it "can iterate over the list" do
       subject.head = LinkedList::Node.new(1)
+
       expect { subject.each { |node| puts node.data } }.to output("1\n").to_stdout
     end
 
     it "inherits from Enumerable" do
       subject.head = LinkedList::Node.new("Hello")
       output = subject.map {|node| "#{node.data}, world!" }
+
       expect(output).to eq ["Hello, world!"]
+    end
+  end
+
+  describe "#insert" do
+    it "adds a new node to the :head of the list" do
+      subject.head = LinkedList::Node.new('cat')
+      subject.insert('dog')
+
+      expect(subject.head.data).to eq 'dog'
+    end
+  end
+
+  describe "#insert_sorted" do
+    it "adds a new node in sorted order" do
+      list1      = LinkedList::List.new
+      list1.head = LinkedList::Node.new('cat')
+      list1.insert_sorted('dog')
+
+      expect(list1.head.data).to      eq 'cat'
+      expect(list1.head.next.data).to eq 'dog'
+
+      list2 = LinkedList::List.new
+      list2.head = LinkedList::Node.new(3)
+      list2.insert(1)
+      list2.insert_sorted(2)
+
+      expect( list2.map{|n| n.data } ).to eq [1, 2, 3]
     end
   end
 

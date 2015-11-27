@@ -20,5 +20,22 @@ class LinkedList
         item = item.next
       end
     end
+
+    def insert(data)
+      self.head = Node.new(data, self.head)
+    end
+
+    def insert_sorted(data)
+      if (!head || data <= head.data)
+        return insert(data)
+      end
+
+      current = head
+      while current.next && (current.next.data < data)
+        current = current.next
+      end
+
+      current.next = Node.new(data, current.next)
+    end
   end
 end
