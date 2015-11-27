@@ -44,5 +44,29 @@ class LinkedList
         node.data == value
       end
     end
+
+    def remove(target)
+      self.head = head.next if head == target
+
+      previous = find do |node|
+        node.next == target
+      end
+
+      previous.next = previous.next.next if previous
+    end
+
+    def remove_value(value)
+      self.head = head.next if head && head.data == value
+
+      previous = self.find do |node|
+        node.next.data == value
+      end
+
+      previous.next = previous.next.next if previous
+
+      # this would be cleaner but requires 2 iterations over the list
+      # target = self.find_value(value)
+      # self.remove(target)
+    end
   end
 end

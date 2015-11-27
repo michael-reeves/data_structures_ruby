@@ -104,4 +104,61 @@ describe LinkedList::List do
     end
   end
 
+  describe "#remove" do
+    it "deletes the target node from the list" do
+      subject.head = LinkedList::Node.new('cat')
+      subject.insert('dog')
+      subject.insert('mouse')
+
+      node = subject.find_value('dog')
+      subject.remove(node)
+
+      expect(subject).not_to include(node)
+    end
+
+    it "yields an empty list when removing the only node from the list" do
+      node = LinkedList::Node.new('cat')
+      subject.head = node
+
+      subject.remove(node)
+
+      expect(subject.head).to be_nil
+    end
+
+    it "does not raise an error if the list is empty" do
+      node = LinkedList::Node.new('cat')
+
+      subject.remove(node)
+
+      expect(subject.head).to be_nil
+    end
+  end
+
+  describe "#remove_value" do
+    it "deletes the first node containing the value from the list" do
+      subject.head = LinkedList::Node.new('cat')
+      subject.insert('dog')
+      subject.insert('cat')
+      subject.insert('mouse')
+
+      subject.remove_value('cat')
+
+      expect( subject.map{|node| node.data} ).to eq ['mouse', 'dog', 'cat']
+    end
+
+    it "yields an empty list when removing the only node from the list" do
+      subject.head = LinkedList::Node.new('cat')
+
+      subject.remove_value('cat')
+
+      expect(subject.head).to be_nil
+    end
+
+    it "does not raise an error if the list is empty" do
+      subject.remove_value('cat')
+
+      expect(subject.head).to be_nil
+    end
+  end
+
 end
