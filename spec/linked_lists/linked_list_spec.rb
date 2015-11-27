@@ -93,4 +93,15 @@ describe LinkedList::List do
     end
   end
 
+  describe "#find_value" do
+    it "returns the node containing the value in :data" do
+      node = LinkedList::Node.new('cat')
+      subject.head = node
+      subject.insert('dog')
+      subject.insert('mouse')
+
+      expect(subject.find_value('cat')).to eq node
+    end
+  end
+
 end

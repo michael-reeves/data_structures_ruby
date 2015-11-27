@@ -37,5 +37,12 @@ class LinkedList
 
       current.next = Node.new(data, current.next)
     end
+
+    def find_value(value)
+      # leverage find in the Enumerable module
+      self.find do |node|
+        node.data == value
+      end
+    end
   end
 end
