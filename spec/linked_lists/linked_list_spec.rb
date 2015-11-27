@@ -39,10 +39,25 @@ describe Node do
 end
 
 describe List do
+
   describe "attributes" do
     it "allow reading and writing of :head" do
       subject.head = Node.new(1)
       expect(subject.head).to be_an_instance_of(Node)
     end
   end
+
+  describe "#each" do
+    it "can iterate over the list" do
+      subject.head = Node.new(1)
+      expect { subject.each { |node| puts node.data } }.to output("1\n").to_stdout
+    end
+
+    it "inherits from Enumerable" do
+      subject.head = Node.new("Hello")
+      output = subject.map {|node| "#{node.data}, world!" }
+      expect(output).to eq ["Hello, world!"]
+    end
+  end
+
 end

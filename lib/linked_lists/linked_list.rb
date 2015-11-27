@@ -8,5 +8,15 @@ class Node
 end
 
 class List
+  include Enumerable
+  
   attr_accessor :head
+
+  def each
+    item = self.head
+    while item
+      yield(item)
+      item = item.next
+    end
+  end
 end
