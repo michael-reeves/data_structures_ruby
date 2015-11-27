@@ -6,3 +6,7 @@ class Node
     self.next = next_node
   end
 end
+
+class List
+  attr_accessor :head
+end

@@ -37,3 +37,12 @@ describe Node do
   end
 
 end
+
+describe List do
+  describe "attributes" do
+    it "allow reading and writing of :head" do
+      subject.head = Node.new(1)
+      expect(subject.head).to be_an_instance_of(Node)
+    end
+  end
+end
