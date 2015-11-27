@@ -1,22 +1,24 @@
-class Node
-  attr_accessor :data, :next
+class LinkedList
+  class Node
+    attr_accessor :data, :next
 
-  def initialize(data, next_node = nil)
-    self.data = data
-    self.next = next_node
+    def initialize(data, next_node = nil)
+      self.data = data
+      self.next = next_node
+    end
   end
-end
 
-class List
-  include Enumerable
-  
-  attr_accessor :head
+  class List
+    include Enumerable
 
-  def each
-    item = self.head
-    while item
-      yield(item)
-      item = item.next
+    attr_accessor :head
+
+    def each
+      item = self.head
+      while item
+        yield(item)
+        item = item.next
+      end
     end
   end
 end
