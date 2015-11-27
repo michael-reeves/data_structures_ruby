@@ -16,6 +16,7 @@ describe LinkedList::Node do
     it "allows setting of next" do
       node = LinkedList::Node.new('')
       node2 = LinkedList::Node.new('two', node)
+
       expect(node2.next).to be node
     end
   end
@@ -24,6 +25,7 @@ describe LinkedList::Node do
     it "allow reading and writing of :data" do
       node = LinkedList::Node.new('')
       expect(node.data).not_to eq 'foobar'
+
       node.data = 'foobar'
       expect(node.data).to eq 'foobar'
     end
@@ -32,6 +34,7 @@ describe LinkedList::Node do
       node = LinkedList::Node.new("")
       expect(node.next).to be_nil
       node.next = 'dogs'
+
       expect(node.next).to eq 'dogs'
     end
   end
@@ -43,6 +46,7 @@ describe LinkedList::List do
   describe "attributes" do
     it "allow reading and writing of :head" do
       subject.head = LinkedList::Node.new(1)
+
       expect(subject.head).to be_an_instance_of(LinkedList::Node)
     end
   end
