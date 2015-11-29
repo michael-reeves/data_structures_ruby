@@ -24,6 +24,7 @@ describe LinkedList::Node do
   describe "attributes" do
     it "allow reading and writing of :data" do
       node = LinkedList::Node.new('')
+      expect(node.data).to eq ''
       expect(node.data).not_to eq 'foobar'
 
       node.data = 'foobar'
