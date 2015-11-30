@@ -117,6 +117,18 @@ describe LinkedList::List do
       expect(subject).not_to include(node)
     end
 
+    it "only deletes the first target node from the list" do
+      node = LinkedList::Node.new('cat')
+      subject.head = node
+      subject.insert('cat')
+      subject.insert('dog')
+      subject.insert('mouse')
+
+      subject.remove(node)
+
+      expect( subject.map{|item| item.data} ).to eq ['mouse', 'dog', 'cat']
+    end
+
     it "yields an empty list when removing the only node from the list" do
       node = LinkedList::Node.new('cat')
       subject.head = node
