@@ -41,5 +41,10 @@ class LinkedList
       current.next = Node.new(data, current.next)
       self.tail = current.next if current.next.next == self.head
     end
+
+    def find_value(data)
+      self.find { |node| node.data == data }
+    end
+
   end
 end

@@ -72,4 +72,15 @@ describe LinkedList::CircularList do
     end
   end
 
+  describe "#find_value" do
+    it "returns the first node containing the value in data" do
+      subject.insert('dog')
+      subject.insert('cat')
+      subject.insert('monkey')
+      subject.insert('monkey')
+
+      expect(subject.find_value('monkey')).to eq subject.head
+    end
+  end
+
 end
