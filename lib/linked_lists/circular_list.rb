@@ -1,6 +1,7 @@
 require 'linked_lists/node'
 
 class LinkedList
+
   class CircularList
     include Enumerable
 
@@ -46,5 +47,36 @@ class LinkedList
       self.find { |node| node.data == data }
     end
 
+    def remove(target)
+      return nil if self.head.nil?
+
+      if self.head == target
+        if self.tail == target
+          self.head = nil
+          self.tail = nil
+          return nil
+        end
+
+        self.tail.next = self.head.next
+        self.head      = self.head.next
+        return target
+      end
+
+      previous = self.find do |node|
+        node.next == target
+      end
+
+      if previous
+        if previous.next == self.tail
+          self.tail      = previous
+          self.tail.next = head
+        else
+          previous.next = previous.next.next
+        end
+        return target
+      end
+    end
+
   end
+
 end

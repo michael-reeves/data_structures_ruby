@@ -83,4 +83,51 @@ describe LinkedList::CircularList do
     end
   end
 
+  describe "#remove" do
+    before do
+      subject.insert('dog')
+      subject.insert('cat')
+      subject.insert('cat')
+      subject.insert('monkey')
+    end
+
+    it "deletes the targeted node from the list" do
+      expect(subject.map {|node| node.data }).to eq ['monkey', 'cat', 'cat', 'dog']
+
+      cat_node = subject.find_value('cat')
+      expect(subject.remove(cat_node)).to equal cat_node
+
+      expect(subject.map{|node| node.data }).to eq ['monkey', 'cat', 'dog']
+
+    end
+
+    it "deletes the target node from the tail" do
+      dog_node = subject.tail
+      subject.remove(dog_node)
+
+      expect(subject.map{|node| node.data}).to eq ['monkey', 'cat', 'cat']
+    end
+
+    it "deletes the target node from the head" do
+      monkey_node = subject.find_value('monkey')
+      subject.remove(monkey_node)
+
+      expect(subject.map{|node| node.data}).to eq ['cat', 'cat', 'dog']
+    end
+
+    it "return nil if the node is not found" do
+      monkey_node = LinkedList::Node.new('monkey')
+      expect( subject.remove(monkey_node) ).to be_nil
+    end
+
+    it "sets :head and :tail to nil when removing a single element" do
+      list1 = LinkedList::CircularList.new
+      node = list1.insert('cat')
+
+      expect(list1.remove(node)).to be_nil
+      expect(list1.head).to         be_nil
+      expect(list1.tail).to         be_nil
+    end
+  end
+
 end
