@@ -37,4 +37,24 @@ describe LinkedList::DoublyLinkedList do
     expect(subject.map{ |n| n.data }).to eq [1,2,3]
   end
 
+  describe "#insert" do
+    it "inserts a new node at the head" do
+      subject.insert(3)
+
+      expect(subject.head.data).to      eq 3
+      expect(subject.head.next.data).to eq 3
+      expect(subject.head.prev.data).to eq 3
+
+      subject.insert(2)
+
+      expect(subject.head.data).to eq 2
+
+      subject.insert(1)
+
+      expect(subject.head.data).to      eq 1
+      expect(subject.head.next.data).to eq 2
+      expect(subject.head.prev.data).to eq 3
+    end
+  end
+
 end
