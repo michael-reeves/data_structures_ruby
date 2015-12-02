@@ -88,4 +88,34 @@ describe LinkedList::DoublyLinkedList do
     end
   end
 
+  describe "#remove" do
+    it "deletes the target node from the list and returns it" do
+      subject.insert('cat')
+      subject.insert('dog')
+      subject.insert('cat')
+      subject.insert('mouse')
+
+      node = subject.find_value('cat')
+
+      expect(subject.remove(node)).to be node
+    end
+
+    it "returns nil if the item is not found" do
+      subject.insert('cat')
+      subject.insert('dog')
+      node = LinkedList::DoublyLinkedNode.new('mouse', subject.head, subject.head.prev)
+
+      expect(subject.remove(node)).to be_nil
+    end
+
+    it "returns an empty list if the node is the last item in the list" do
+      subject.insert('cat')
+      node = subject.find_value('cat')
+
+      subject.remove(node)
+
+      expect(subject.head).to be_nil
+    end
+  end
+
 end

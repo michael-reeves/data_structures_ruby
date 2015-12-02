@@ -41,6 +41,24 @@ class LinkedList
       end
     end
 
+    def remove(target_node)
+      if self.head.nil?
+        return nil
+      elsif (self.head == target_node) && (self.head == self.head.next)
+        self.head = nil
+        return target_node
+      end
+
+      target = self.find {|node| node == target_node }
+
+      if target
+        return_node = target
+        target.prev.next = target.next
+        target.next.prev = target.prev
+        self.head = head.next if self.head == target
+        return return_node
+      end
+    end
   end
 
 end
