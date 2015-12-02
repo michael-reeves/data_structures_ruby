@@ -35,6 +35,12 @@ class LinkedList
       self.head           = node  # finally move head to the new node
     end
 
+    def find_value(value)
+      self.find do |node|
+        node.data == value
+      end
+    end
+
   end
 
 end

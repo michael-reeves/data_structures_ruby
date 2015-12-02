@@ -57,4 +57,35 @@ describe LinkedList::DoublyLinkedList do
     end
   end
 
+  describe "#find_value" do
+    it "returns the node containing the value" do
+      subject.insert(4)
+      subject.insert(3)
+      subject.insert(2)
+      subject.insert(1)
+
+      node = subject.find_value(4)
+
+      expect(node).to      be subject.head.prev
+      expect(node.data).to eq 4
+    end
+
+    it "returns the first node containing the value" do
+      subject.insert(3)
+      subject.insert(3)
+      subject.insert(1)
+
+      node = subject.find_value(3)
+
+      expect(node.data).to eq 3
+      expect(node).not_to  be subject.head.prev
+    end
+
+    it "returns nil if the value is not found" do
+      subject.insert('foo')
+
+      expect(subject.find_value('bar')).to be_nil
+    end
+  end
+
 end
