@@ -6,3 +6,6 @@
 
 # Ignore bundler config.
 /.bundle
+
+# local scratch files
+lib/linked_lists/linked_list2.rb
