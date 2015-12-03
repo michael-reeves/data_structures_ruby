@@ -118,4 +118,25 @@ describe LinkedList::DoublyLinkedList do
     end
   end
 
+  describe "#remove_value" do
+    it "deletes the first node containing the value from the list" do
+      subject.insert('cat')
+      subject.insert('dog')
+      subject.insert('cat')
+      subject.insert('mouse')
+
+      node = subject.remove_value('cat')
+
+      expect( subject.map{ |n| n.data } ).to eq ['mouse', 'dog', 'cat']
+      expect(node.data).to eq 'cat'
+    end
+
+    it "returns nil if a node containing the value is not found" do
+      subject.insert('cat')
+      subject.insert('dog')
+
+      expect(subject.remove_value('mouse')).to be_nil
+    end
+  end
+
 end

@@ -59,6 +59,11 @@ class LinkedList
         return return_node
       end
     end
+
+    def remove_value(value)
+      target_node = find_value(value)
+      remove(target_node) if target_node
+    end
   end
 
 end
